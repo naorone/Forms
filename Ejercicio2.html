@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .cuadrado{
+            height: 60px;
+            width: 100px;
+            border: solid;
+            background-color: aquamarine;
+            margin-right: 10px;
+            float: left;
+            text-align: center;
+            font-size: 30px;
+            padding-top:30px;
+
+
+        }
+
+    </style>
+
+    <script>
+        function cambiarColor()
+        {
+            let cuad= document.getElementById("cuadrados");
+            let col= document.getElementById("colores");
+            let color= col.selectedIndex;
+            let cuadrado = cuad.selectedIndex;
+
+            let nCuadrado = document.getElementById(cuadrado);
+            let selColor = document.getElementsByName(color);
+            let c= selColor[0].getAttribute("id");
+            nCuadrado.style.backgroundColor=c;
+        }
+    </script>
+
+
+</head>
+<body>
+
+        <div>
+            <div id="1" class="cuadrado">1</div>
+            <div id="2" class="cuadrado">2</div>
+            <div id="3" class="cuadrado">3</div>
+            <div id="4" class="cuadrado">4</div>
+        </div>
+
+        <form>
+            <select id="cuadrados">
+                <option selected> Selecciona cuadrado </option>
+                <option>cuadrado 1</option>
+                <option>cuadrado 2</option>
+                <option>cuadrado 3</option>
+                <option>cuadrado 4</option>
+            </select>
+
+            <select id="colores">
+            <option selected> Selecciona color </option>
+            <option name="1" id="red">Rojo</option>
+            <option name="2" id="blue">Azul</option>
+            <option name="3" id="green">Verde</option>
+            <option name="4" id="yellow">Amarillo</option>
+
+            </select>
+            <input type="button" onclick="cambiarColor()" value="Cambiar">
+        </form>
+
+</body>
+</html>
+<!-- 2. Crea una página con un formulario que nos dejara seleccionar de entre cuatro cuadrados que habrá debajo a cuál de ellos le cambiaremos el color.
+Para ello utiliza un menú desplegable para elegir el cuadrado y otro para elegir el color al que cambiara. Los cambios se aplicaran cuando pulsemos un botón. -->

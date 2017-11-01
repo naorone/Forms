@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        window.onload=crearError;
+        let error;
+        function crearError()
+        {
+            error= document.createElement("span");
+            document.body.appendChild(error);
+        }
+
+        function mostrar()
+        {
+            let nombre= document.getElementById("name");
+            let ap= document.getElementById("apell");
+            let dir= document.getElementById("dir");
+
+            if(nombre.value==="" || ap.value==="" || dir.value==="")
+            {
+
+                error.style.color="red";
+                error.textContent="Rellene todos los campos";
+
+            }else{
+                error.textContent="";
+                alert(nombre.value+" "+ap.value+" "+dir.value);
+
+            }
+
+        }
+
+
+    </script>
+
+</head>
+<body>
+    <form id="formulario">
+        <label>Nombre</label>
+        <input id="name" type="text">
+        <label>Apellido</label>
+        <input id="apell" type="text">
+        <label>Direccion</label>
+        <input id="dir" type="text">
+        <input type="button" onclick="mostrar()" value="Enviar">
+
+    </form>
+
+
+</body>
+</html>
+<!-- 1. Crear una página con un formulario que nos pedirá nombre, apellidos y dirección en diferentes cuadros de texto.
+Al pulsar el botón comprobar deberá mostrarnos en pantalla un alert con los datos introducidos.
+Si algún campo no está rellenado deberá alertarnos de ello. -->

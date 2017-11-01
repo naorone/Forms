@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+        .formulario{
+            width: 550px;
+        }
+        .col1{
+            width: 250px;
+            float: left;
+            padding-top: 0px;
+        }
+
+        .col2{
+            width: 300px;
+            margin-top: 0px;
+            float: left;;
+        }
+        input{
+            margin-top: 15px;
+
+        }
+
+    </style>
+
+    <script>
+        window.onload=cursor;
+        let cont=1;
+        function cursor()
+        {
+            document.getElementById("nombre").focus();
+
+        }
+
+        function siguiente(event)
+        {
+            let nombreFocus = document.activeElement.name;
+            if(nombreFocus==="nombre")
+            {
+                cont=1;
+            }else if (nombreFocus==="apell"){
+                cont=2;
+            }else if (nombreFocus==="dir"){
+                cont=3;
+            }else if (nombreFocus==="pob"){
+                cont=4;
+            }else if (nombreFocus==="cp"){
+                cont=5;
+            }else if (nombreFocus==="pro"){
+                cont=6;
+            }
+            if(event.keyCode===13){
+                document.forms[0].elements[cont].focus();
+
+                return false;
+            }
+        }
+
+
+
+
+
+        function validacion() {
+            let nombre = document.forms["formulario"]["nombre"].value;
+            let apell = document.forms["formulario"]["apell"].value;
+            let dir = document.forms["formulario"]["dir"].value;
+            let pob = document.forms["formulario"]["pob"].value;
+            let cp = document.forms["formulario"]["cp"].value;
+            let pro = document.forms["formulario"]["pro"].value;
+            let sw=true;
+
+            if (nombre === "") {
+                document.getElementById("nombre").style.backgroundColor="red";
+                sw=false;
+            }
+            if(apell==="")
+            {
+                document.getElementById("apellido").style.backgroundColor="red";
+                sw=false;
+            }
+            if(dir==="")
+            {
+                document.getElementById("dir").style.backgroundColor="red";
+                sw=false;
+            }
+            if(pob==="")
+            {
+                document.getElementById("poblacion").style.backgroundColor="red";
+                sw=false;
+            }
+            if(cp==="")
+            {
+                document.getElementById("cp").style.backgroundColor="red";
+                sw=false;
+            }
+            if(pro==="")
+            {
+                document.getElementById("provincia").style.backgroundColor="red";
+                sw=false;
+            }
+            return sw;
+        }
+
+
+    </script>
+
+
+
+
+
+</head>
+<body>
+
+<div class="formulario">
+    <form name="formulario" onkeypress="return siguiente(event)" onsubmit="return validacion()">
+        <div class="col1">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" /><br/>
+            <label for="apellido">Apellido</label>
+            <input id="apellido" name="apell" type="text"><br/>
+            <label for="dir">Direccion</label>
+            <input id="dir" name="dir" type="text"><br/>
+        </div>
+        <div class="col2">
+            <label for="poblacion">Poblacion</label>
+            <input id="poblacion" name="pob" type="text"><br/>
+            <label for="cp">Codigo postal</label>
+            <input id="cp" name="cp" type="text"><br/>
+            <label for="provincia">Provincia</label>
+            <input id="provincia" name="pro" type="text"><br/>
+
+        </div>
+
+        <input type="submit" value="Enviar">
+        <input type="reset" value="Limpiar">
+
+    </form>
+</div>
+
+</body>
+</html>
+<!--4. Crea una página con un formulario que nos pedirá datos personales cada uno en un cuadro de texto:
+ nombre, apellidos, dirección, población, código postal, provincia. Ordena los campos de manera  que queden en dos columnas.
+ Al final del formulario habrá un botón de enviar y otro de limpiar el formulario.
+  Al iniciar la página el cuadro de texto del nombre deberá tener el puntero listo para escribir y cuando pulsemos la tecla enter saltara al siguiente campo.
+ En caso de que no se haya rellenado el campo deberá  poner el fondo rojo y no permitirá pulsar el botón de envió. -->

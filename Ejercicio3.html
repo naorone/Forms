@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script>
+    function validacion()
+    {
+        let nombre = document.forms["formulario"]["name"].value;
+        let apell = document.forms["formulario"]["apell"].value;
+        let tel = document.forms["formulario"]["tlf"].value;
+        let email = document.forms["formulario"]["email"].value;
+        let pro = document.forms["formulario"]["tArea"].value;
+
+        if(nombre==="")
+        {
+            alert("Rellena el campo nombre");
+            return false;
+        }else if(apell==="")
+        {
+            alert("Rellena el camnpo apellido");
+            return false;
+        }else if(Number.isInteger(tel))
+        {
+            alert("El camnpo telefono debe ser un numero");
+            return false;
+        }else if(email.indexOf("@")===-1)
+        {
+            alert("Introduzca un email correcto");
+            return false;
+        }else if(pro.length>100)
+        {
+            alert("Máximo 100 caracteres en el problema")
+        }else {
+            return true;
+
+        }
+
+    }
+
+
+</script>
+<body>
+
+<form name="formulario" action="https://www.google.es" onsubmit="return validacion()">
+    <label>Nombre</label>
+    <input name="name" type="text"><br/>
+    <label>Apellido</label>
+    <input name="apell" type="text"><br/>
+    <label>Telefono</label>
+    <input name="tlf" type="text"><br/>
+    <label>Email</label>
+    <input name="email" type="text"><br/>
+    <label>Problema</label>
+    <textarea rows="4" cols="50" name="tArea"></textarea><br/>
+
+    <input type="submit" value="Enviar">
+
+</form>
+
+
+</body>
+</html>
+
+<!-- 3. Crea una página con un formulario que simulara la pagina de ayuda de cualquier web. Deberá pedirnos nombre y apellidos,
+ habrá un área de texto para comentar nuestro problema (que tendrá un límite de 100 caracteres), teléfono (que solo aceptara números)
+  y un campo de e-mail (que deberá tener formato de email). Si no se cumplen los requisitos no dejara enviar el formulario. -->
