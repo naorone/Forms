@@ -10,7 +10,7 @@
     {
         let nombre = document.forms["formulario"]["name"].value;
         let apell = document.forms["formulario"]["apell"].value;
-        let tel = document.forms["formulario"]["tlf"].value;
+        let tel = parseInt(document.forms["formulario"]["tlf"].value);
         let email = document.forms["formulario"]["email"].value;
         let pro = document.forms["formulario"]["tArea"].value;
 
@@ -22,9 +22,11 @@
         {
             alert("Rellena el camnpo apellido");
             return false;
-        }else if(Number.isInteger(tel))
+        }else if(isNaN(tel) || (""+tel).length !== 9 || tel==="")
         {
-            alert("El camnpo telefono debe ser un numero");
+            console.log(tel);
+            console.log(tel.length);
+            alert("El telefono debe ser un numero de 9 digitos");
             return false;
         }else if(email.indexOf("@")===-1)
         {
@@ -44,7 +46,7 @@
 </script>
 <body>
 
-<form name="formulario" action="https://www.google.es" onsubmit="return validacion()">
+<form name="formulario" action=# onsubmit="return validacion()">
     <label>Nombre</label>
     <input name="name" type="text"><br/>
     <label>Apellido</label>

@@ -8,11 +8,15 @@
 
         .formulario{
             width: 550px;
+            background-color: antiquewhite;
         }
         .col1{
             width: 250px;
             float: left;
             padding-top: 0px;
+        }
+        input{
+            background-color: white;
         }
 
         .col2{
@@ -33,11 +37,13 @@
         function cursor()
         {
             document.getElementById("nombre").focus();
-
+            algunoVacio();
         }
 
         function siguiente(event)
         {
+            algunoVacio();
+
             let nombreFocus = document.activeElement.name;
             if(nombreFocus==="nombre")
             {
@@ -53,64 +59,57 @@
             }else if (nombreFocus==="pro"){
                 cont=6;
             }
+            let inputActual= document.activeElement;
             if(event.keyCode===13){
                 document.forms[0].elements[cont].focus();
+                if(validacion(inputActual)){
+                    inputActual.style.backgroundColor="white";
+                }else{
+                    inputActual.style.backgroundColor="red";
+                }
 
                 return false;
             }
+
+
+        }
+
+        function validacion(input)
+        {
+
+            return input.value !== "";
+
+        }
+
+        function algunoVacio()
+        {
+            let inputs= document.getElementsByTagName("input");
+            for (let a= 0; a<inputs.length; a++)
+            {
+                if(validacion(inputs[a]))
+                {
+                    document.getElementById("enviar").disabled=false;
+                }else {
+                    document.getElementById("enviar").disabled=true;
+                    return;
+                }
+            }
+        }
+
+        function limpiar()
+        {
+            let inputs= document.getElementsByTagName("input");
+            for(let i=0; i<inputs.length; i++)
+            {
+                inputs[i].style.backgroundColor="white";
+            }
+
         }
 
 
-
-
-
-        function validacion() {
-            let nombre = document.forms["formulario"]["nombre"].value;
-            let apell = document.forms["formulario"]["apell"].value;
-            let dir = document.forms["formulario"]["dir"].value;
-            let pob = document.forms["formulario"]["pob"].value;
-            let cp = document.forms["formulario"]["cp"].value;
-            let pro = document.forms["formulario"]["pro"].value;
-            let sw=true;
-
-            if (nombre === "") {
-                document.getElementById("nombre").style.backgroundColor="red";
-                sw=false;
-            }
-            if(apell==="")
-            {
-                document.getElementById("apellido").style.backgroundColor="red";
-                sw=false;
-            }
-            if(dir==="")
-            {
-                document.getElementById("dir").style.backgroundColor="red";
-                sw=false;
-            }
-            if(pob==="")
-            {
-                document.getElementById("poblacion").style.backgroundColor="red";
-                sw=false;
-            }
-            if(cp==="")
-            {
-                document.getElementById("cp").style.backgroundColor="red";
-                sw=false;
-            }
-            if(pro==="")
-            {
-                document.getElementById("provincia").style.backgroundColor="red";
-                sw=false;
-            }
-            return sw;
-        }
 
 
     </script>
-
-
-
-
 
 </head>
 <body>
@@ -119,7 +118,7 @@
     <form name="formulario" onkeypress="return siguiente(event)" onsubmit="return validacion()">
         <div class="col1">
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" /><br/>
+            <input id="nombre"  type="text" name="nombre" /><br/>
             <label for="apellido">Apellido</label>
             <input id="apellido" name="apell" type="text"><br/>
             <label for="dir">Direccion</label>
@@ -135,8 +134,8 @@
 
         </div>
 
-        <input type="submit" value="Enviar">
-        <input type="reset" value="Limpiar">
+        <input id="enviar" type="submit" value="Enviar">
+        <input type="reset" value="Limpiar" onclick="limpiar()">
 
     </form>
 </div>
